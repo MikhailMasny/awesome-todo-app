@@ -1,0 +1,42 @@
+{
+  "name": "awesome-todo-app",
+  "version": "1.0.0",
+  "description": "Todo app with webpack, eslint, babel and editorconfig",
+  "main": "script.js",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint .",
+    "server": "webpack-dev-server",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikhailMasny/awesome-todo-app.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "Mikhail M.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikhailMasny/awesome-todo-app/issues"
+  },
+  "homepage": "https://github.com/MikhailMasny/awesome-todo-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.20.1",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
