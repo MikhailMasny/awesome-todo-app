@@ -13,3 +13,4 @@
 > npm install eslint-loader --save-dev
 > npm install --save-dev css-loader
 > npm install webpack-dev-server --save-dev
+> npm install sass-loader sass webpack --save-dev

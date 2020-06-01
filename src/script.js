@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
 /* eslint-disable prefer-arrow-callback */
-import './style.css';
+import './style.scss';
 
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');

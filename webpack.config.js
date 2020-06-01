@@ -40,7 +40,7 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.s[ac]ss$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -49,6 +49,7 @@ module.exports = {
             },
           },
           'css-loader',
+          'sass-loader',
         ],
       },
     ],
