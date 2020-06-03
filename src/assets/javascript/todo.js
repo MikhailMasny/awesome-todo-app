@@ -5,13 +5,13 @@ import * as localStorage from './localStorage';
 
 /* Create new task */
 
-function createBlockTaskInfo(taskTitleText) {
+function createBlockTaskInfo(task) {
   const taskInfo = document.createElement('div');
   taskInfo.classList.add('task__info');
 
   const taskTitle = document.createElement('div');
   taskTitle.classList.add('task__title');
-  taskTitle.innerText = taskTitleText;
+  taskTitle.innerText = task.text;
   taskInfo.appendChild(taskTitle);
 
   const taskCreation = document.createElement('div');
@@ -19,13 +19,13 @@ function createBlockTaskInfo(taskTitleText) {
 
   const taskIcon = document.createElement('div');
   taskIcon.classList.add('task__icon');
-  taskIcon.innerText = 'icon';
+  taskIcon.innerText = 'icon'; // TODO: fix it
   taskCreation.appendChild(taskIcon);
 
   const taskTime = document.createElement('div');
   taskTime.classList.add('task__time');
   taskTime.classList.add('task__time-indent');
-  taskTime.innerText = new Date().toUTCString();
+  taskTime.innerText = task.date;
   taskCreation.appendChild(taskTime);
 
   taskInfo.appendChild(taskCreation);
@@ -48,11 +48,11 @@ function createBlockTaskAction() {
   return taskAction;
 }
 
-function createBlockTaskContent(titleText) {
+function createBlockTaskContent(task) {
   const taskContent = document.createElement('div');
   taskContent.classList.add('task__content');
 
-  const blockTaskInfo = createBlockTaskInfo(titleText);
+  const blockTaskInfo = createBlockTaskInfo(task);
   taskContent.appendChild(blockTaskInfo);
 
   const blockTaskAction = createBlockTaskAction();
@@ -61,16 +61,24 @@ function createBlockTaskContent(titleText) {
   return taskContent;
 }
 
+function generateTask() {
+  return {
+    id: Math.random().toString(36).slice(2),
+    text: constants.todoInput.value,
+    date: new Date().toUTCString(),
+  };
+}
+
 function createTask(event) {
   event.preventDefault();
-  localStorage.saveLocalTodos(constants.todoInput.value);
-
   const todoDiv = document.createElement('div');
+  const task = generateTask();
+  localStorage.saveTasksToLocalStorage(task);
+  const blockTaskContent = createBlockTaskContent(task);
+  todoDiv.appendChild(blockTaskContent);
+  todoDiv.setAttribute('data-id', task.id);
   todoDiv.classList.add('task__item');
   todoDiv.classList.add('task__item-indent');
-  const blockTaskContent = createBlockTaskContent(constants.todoInput.value);
-  todoDiv.appendChild(blockTaskContent);
-  todoDiv.setAttribute('data-test', 'Hello World!');
   constants.todoList.insertBefore(todoDiv, constants.todoList.firstChild);
   constants.todoInput.value = '';
 }
@@ -79,16 +87,16 @@ function createTask(event) {
 /* Get all tasks */
 
 function getAllTasks() {
-  const localStorageTasks = localStorage.getLocalTodos();
-  if (localStorageTasks) {
-    const tasks = JSON.parse(localStorageTasks);
+  const tasks = localStorage.getTasksFromLocalStorage();
+  if (tasks) {
     tasks.forEach((task) => {
       const todoDiv = document.createElement('div');
+      todoDiv.setAttribute('data-id', task.id);
       todoDiv.classList.add('task__item');
       todoDiv.classList.add('task__item-indent');
       const blockTaskContent = createBlockTaskContent(task);
       todoDiv.appendChild(blockTaskContent);
-      constants.todoList.appendChild(todoDiv);
+      constants.todoList.insertBefore(todoDiv, constants.todoList.firstChild);
     });
   }
 }
@@ -97,14 +105,11 @@ function getAllTasks() {
 /* Remove and complete task */
 
 function removeTask(element) {
-  // const task = element.parentElement;
-  // localStorage.removeLocalTodos(task);
-
   const taskAction = element.parentElement;
   const taskContent = taskAction.parentElement;
   const task = taskContent.parentElement;
+  localStorage.removeTasksFromLocalStorage(task.dataset.id);
   task.remove();
-  console.log(task);
 }
 
 function completeTask(element) {
@@ -131,40 +136,40 @@ function operationWithTask(event) {
 
 /* Filter */
 
-function filterTodo(event) {
-  const key = event.target.value;
-  const todos = constants.todoList.childNodes;
-  todos.forEach((todo) => {
-    switch (key) {
-      case 'all':
-        todo.style.display = 'flex';
-        break;
-      case 'completed':
-        if (todo.classList.contains('completed')) {
-          todo.style.display = 'flex';
-        } else {
-          todo.style.display = 'none';
-        }
-        break;
+// function filterTodo(event) {
+//   const key = event.target.value;
+//   const todos = constants.todoList.childNodes;
+//   todos.forEach((todo) => {
+//     switch (key) {
+//       case 'all':
+//         todo.style.display = 'flex';
+//         break;
+//       case 'completed':
+//         if (todo.classList.contains('completed')) {
+//           todo.style.display = 'flex';
+//         } else {
+//           todo.style.display = 'none';
+//         }
+//         break;
 
-      case 'uncompleted':
-        if (!todo.classList.contains('completed')) {
-          todo.style.display = 'flex';
-        } else {
-          todo.style.display = 'none';
-        }
-        break;
+//       case 'uncompleted':
+//         if (!todo.classList.contains('completed')) {
+//           todo.style.display = 'flex';
+//         } else {
+//           todo.style.display = 'none';
+//         }
+//         break;
 
-      default:
-        break;
-    }
-  });
-}
+//       default:
+//         break;
+//     }
+//   });
+// }
 
 export {
   createTask,
   getAllTasks,
   operationWithTask,
 
-  filterTodo,
+  // filterTodo,
 };

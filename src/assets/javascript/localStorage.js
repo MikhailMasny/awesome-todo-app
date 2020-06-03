@@ -1,36 +1,26 @@
-function getLocalTodos() {
-  const allTasks = localStorage.getItem('todos');
-  if (allTasks) {
-    return allTasks;
+function getTasksFromLocalStorage() {
+  const tasks = localStorage.getItem('tasks');
+  if (tasks) {
+    return JSON.parse(tasks);
   }
   return [];
 }
 
-function saveLocalTodos(todo) {
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  }
-  todos.push(todo);
-  localStorage.setItem('todos', JSON.stringify(todos));
+function saveTasksToLocalStorage(task) {
+  const tasks = getTasksFromLocalStorage();
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-function removeLocalTodos(todo) {
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  }
-  const todoIndex = todo.children[0].innerText;
-  todos.splice(todos.indexOf(todoIndex), 1);
-  localStorage.setItem('todos', JSON.stringify(todos));
+function removeTasksFromLocalStorage(id) {
+  const tasks = getTasksFromLocalStorage();
+  const task = tasks.filter((t) => t.id === id);
+  tasks.splice(tasks.indexOf(task[0]), 1);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 export {
-  saveLocalTodos,
-  removeLocalTodos,
-  getLocalTodos,
+  getTasksFromLocalStorage,
+  saveTasksToLocalStorage,
+  removeTasksFromLocalStorage,
 };
