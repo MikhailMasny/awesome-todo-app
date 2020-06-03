@@ -1,0 +1,9 @@
+@mixin flexContent($display, $content, $align) {
+    display: $display;
+    justify-content: $content;
+    align-items: $align;
+}
+
+@mixin topIndent($length) {
+    margin-top: $length;
+}

@@ -1,0 +1,116 @@
+.task__list {
+    @include flexContent(flex, center, center);
+    flex-wrap: wrap;
+}
+
+.task__item {
+    width: 550px;
+    height: 94px;
+    background-color: #FFFFFF;
+    /* background-color: #F5F7FA;  */
+    border-radius: 24px;
+    /* box-shadow: 55px 65px 44px rgba(197, 104, 78, 0.13), 20px 30px 30px rgba(102, 62, 51, 0.06), 10px 20px 20px rgba(102, 62, 51, 0.04), 1px 10px 10px rgba(102, 62, 51, 0.02); */
+    box-shadow: 0px 8px 22px rgba(51, 51, 51, 0.15);
+
+    &:hover {
+        box-shadow: 0px 8px 22px rgba(51, 51, 51, 0.25);
+    }
+}
+
+.task__item-indent {
+    @include topIndent(20px);
+}
+
+.task__content {
+    padding: 23px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+}
+
+.task__title-done {
+    text-decoration: line-through;
+}
+
+.task__creation {
+    display: flex;
+    align-items: center;
+}
+
+.task__time {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #AFAFBD;
+}
+
+.task__time-indent {
+    margin-left: 5px;
+}
+
+.task__action {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task__action-done {
+    justify-content: flex-end;
+}
+
+.task__complete,
+.task__remove {
+    width: 48px;
+    height: 48px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.task__complete {
+    background-color: #E6FBF2;
+}
+
+.task__complete::after {
+    // content: url('complete_green.png');
+}
+
+.task__complete:hover {
+    background-color: #00D578;
+}
+
+.task__complete:hover::after {
+    // content: url('complete.png');
+}
+
+.task__remove {
+    background-color: #FEEFEF;
+}
+
+.task__remove::after {
+    // content: url('remove_red.png');
+}
+
+.task__remove:hover {
+    background-color: #F55858;
+}
+
+.task__remove:hover::after {
+    // content: url('remove.png');
+}
+
+.task__complete-disable {
+    display: none;
+}

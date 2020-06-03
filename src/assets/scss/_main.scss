@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $ligthGrayColor;
+    @extend %flexCenter;
+}
+
+.wrapper {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.indent {
+    @include topIndent(32px);
+}
