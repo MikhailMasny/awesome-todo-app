@@ -1,13 +1,11 @@
-// TODO: rename constants
-
-const todoInput = document.querySelector('.create__input');
-const todoButton = document.querySelector('.create__button');
-const todoList = document.querySelector('.task__list');
-const filterOption = document.querySelector('.filter-todo');
+const taskInput = document.querySelector('.create__input');
+const taskButton = document.querySelector('.create__button');
+const taskList = document.querySelector('.task__list');
+const filterOption = document.querySelector('.filter__select');
 
 export {
-  todoInput,
-  todoButton,
-  todoList,
+  taskInput,
+  taskButton,
+  taskList,
   filterOption,
 };

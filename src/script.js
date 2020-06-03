@@ -1,9 +1,9 @@
 import './style.scss';
-import * as todo from './assets/javascript/todo';
+import * as task from './assets/javascript/task';
 import loadEvents from './assets/javascript/events';
 
 function load() {
-  todo.getAllTasks();
+  task.getAllTasks();
   loadEvents();
 }
 

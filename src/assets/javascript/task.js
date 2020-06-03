@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import * as constants from './constants';
-import * as localStorage from './localStorage';
+import * as localStorage from './local-storage';
 
 
 /* Create new task */
@@ -64,7 +64,7 @@ function createBlockTaskContent(task) {
 function generateTask() {
   return {
     id: Math.random().toString(36).slice(2),
-    text: constants.todoInput.value,
+    text: constants.taskInput.value,
     date: new Date().toUTCString(),
   };
 }
@@ -79,8 +79,8 @@ function createTask(event) {
   todoDiv.setAttribute('data-id', task.id);
   todoDiv.classList.add('task__item');
   todoDiv.classList.add('task__item-indent');
-  constants.todoList.insertBefore(todoDiv, constants.todoList.firstChild);
-  constants.todoInput.value = '';
+  constants.taskList.insertBefore(todoDiv, constants.taskList.firstChild);
+  constants.taskInput.value = '';
 }
 
 
@@ -96,7 +96,7 @@ function getAllTasks() {
       todoDiv.classList.add('task__item-indent');
       const blockTaskContent = createBlockTaskContent(task);
       todoDiv.appendChild(blockTaskContent);
-      constants.todoList.insertBefore(todoDiv, constants.todoList.firstChild);
+      constants.taskList.insertBefore(todoDiv, constants.taskList.firstChild);
     });
   }
 }
@@ -170,6 +170,5 @@ export {
   createTask,
   getAllTasks,
   operationWithTask,
-
   // filterTodo,
 };

@@ -1,8 +1,8 @@
 import * as constants from './constants';
-import * as todo from './todo';
+import * as task from './task';
 
 export default function loadEvents() {
-  constants.todoButton.addEventListener('click', todo.createTask);
-  constants.todoList.addEventListener('click', todo.operationWithTask);
+  constants.taskButton.addEventListener('click', task.createTask);
+  constants.taskList.addEventListener('click', task.operationWithTask);
   // constants.filterOption.addEventListener('click', todo.filterTodo);
 }
