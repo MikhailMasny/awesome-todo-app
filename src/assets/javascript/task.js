@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import * as constants from './constants';
 import * as localStorage from './local-storage';
 
@@ -97,18 +96,39 @@ function createTask(event) {
 
 /* Get all tasks */
 
-function getAllTasks() {
+function showTask(task) {
+  const todoDiv = document.createElement('div');
+  todoDiv.setAttribute('data-id', task.id);
+  todoDiv.setAttribute('data-completed', task.isCompleted);
+  todoDiv.classList.add('task__item');
+  todoDiv.classList.add('task__item-indent');
+  const blockTaskContent = createBlockTaskContent(task);
+  todoDiv.appendChild(blockTaskContent);
+  constants.taskList.insertBefore(todoDiv, constants.taskList.firstChild);
+}
+
+function getAllTasks(type) {
   const tasks = localStorage.getTasksFromLocalStorage();
   if (tasks) {
+    constants.taskList.innerHTML = '';
     tasks.forEach((task) => {
-      const todoDiv = document.createElement('div');
-      todoDiv.setAttribute('data-id', task.id);
-      todoDiv.setAttribute('data-completed', task.isCompleted);
-      todoDiv.classList.add('task__item');
-      todoDiv.classList.add('task__item-indent');
-      const blockTaskContent = createBlockTaskContent(task);
-      todoDiv.appendChild(blockTaskContent);
-      constants.taskList.insertBefore(todoDiv, constants.taskList.firstChild);
+      switch (type) {
+        case 1:
+          if (!task.isCompleted) {
+            showTask(task);
+          }
+          break;
+
+        case 2:
+          if (task.isCompleted) {
+            showTask(task);
+          }
+          break;
+
+        default:
+          showTask(task);
+          break;
+      }
     });
   }
 }
@@ -151,39 +171,36 @@ function operationWithTask(event) {
 
 /* Filter */
 
-// function filterTodo(event) {
-//   const key = event.target.value;
-//   const todos = constants.todoList.childNodes;
-//   todos.forEach((todo) => {
-//     switch (key) {
-//       case 'all':
-//         todo.style.display = 'flex';
-//         break;
-//       case 'completed':
-//         if (todo.classList.contains('completed')) {
-//           todo.style.display = 'flex';
-//         } else {
-//           todo.style.display = 'none';
-//         }
-//         break;
+function convertSelectedFilter(key) {
+  let type;
+  switch (key) {
+    case 'completed':
+      type = 2;
+      break;
 
-//       case 'uncompleted':
-//         if (!todo.classList.contains('completed')) {
-//           todo.style.display = 'flex';
-//         } else {
-//           todo.style.display = 'none';
-//         }
-//         break;
+    case 'uncompleted':
+      type = 1;
+      break;
 
-//       default:
-//         break;
-//     }
-//   });
-// }
+    default:
+      type = 0;
+      break;
+  }
+  return type;
+}
+
+function filterTasks(event) {
+  const key = event.target.value;
+  const type = convertSelectedFilter(key);
+  getAllTasks(type);
+}
+
+
+/* Export */
 
 export {
   createTask,
   getAllTasks,
   operationWithTask,
-  // filterTodo,
+  filterTasks,
 };
