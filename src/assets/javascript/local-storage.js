@@ -19,8 +19,21 @@ function removeTasksFromLocalStorage(id) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function updateTasksFromLocalStorage(id) {
+  const tasks = getTasksFromLocalStorage();
+  tasks.forEach((t) => {
+    const task = t;
+    if (task.id === id) {
+      task.isCompleted = true;
+    }
+    return task;
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 export {
   getTasksFromLocalStorage,
   saveTasksToLocalStorage,
   removeTasksFromLocalStorage,
+  updateTasksFromLocalStorage,
 };

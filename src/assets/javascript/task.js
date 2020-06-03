@@ -11,6 +11,9 @@ function createBlockTaskInfo(task) {
 
   const taskTitle = document.createElement('div');
   taskTitle.classList.add('task__title');
+  if (task.isCompleted) {
+    taskTitle.classList.add('task__title-done');
+  }
   taskTitle.innerText = task.text;
   taskInfo.appendChild(taskTitle);
 
@@ -33,12 +36,18 @@ function createBlockTaskInfo(task) {
   return taskInfo;
 }
 
-function createBlockTaskAction() {
+function createBlockTaskAction(task) {
   const taskAction = document.createElement('div');
   taskAction.classList.add('task__action');
+  if (task.isCompleted) {
+    taskAction.classList.add('task__action-done');
+  }
 
   const taskCompleteButton = document.createElement('button');
   taskCompleteButton.classList.add('task__complete');
+  if (task.isCompleted) {
+    taskCompleteButton.classList.add('task__complete-disable');
+  }
   taskAction.appendChild(taskCompleteButton);
 
   const taskRemoveButton = document.createElement('button');
@@ -55,7 +64,7 @@ function createBlockTaskContent(task) {
   const blockTaskInfo = createBlockTaskInfo(task);
   taskContent.appendChild(blockTaskInfo);
 
-  const blockTaskAction = createBlockTaskAction();
+  const blockTaskAction = createBlockTaskAction(task);
   taskContent.appendChild(blockTaskAction);
 
   return taskContent;
@@ -66,6 +75,7 @@ function generateTask() {
     id: Math.random().toString(36).slice(2),
     text: constants.taskInput.value,
     date: new Date().toUTCString(),
+    isCompleted: false,
   };
 }
 
@@ -77,6 +87,7 @@ function createTask(event) {
   const blockTaskContent = createBlockTaskContent(task);
   todoDiv.appendChild(blockTaskContent);
   todoDiv.setAttribute('data-id', task.id);
+  todoDiv.setAttribute('data-completed', task.isCompleted);
   todoDiv.classList.add('task__item');
   todoDiv.classList.add('task__item-indent');
   constants.taskList.insertBefore(todoDiv, constants.taskList.firstChild);
@@ -92,6 +103,7 @@ function getAllTasks() {
     tasks.forEach((task) => {
       const todoDiv = document.createElement('div');
       todoDiv.setAttribute('data-id', task.id);
+      todoDiv.setAttribute('data-completed', task.isCompleted);
       todoDiv.classList.add('task__item');
       todoDiv.classList.add('task__item-indent');
       const blockTaskContent = createBlockTaskContent(task);
@@ -115,6 +127,9 @@ function removeTask(element) {
 function completeTask(element) {
   const taskAction = element.parentElement;
   const taskContent = taskAction.parentElement;
+  const task = taskContent.parentElement;
+  task.setAttribute('data-completed', true);
+  localStorage.updateTasksFromLocalStorage(task.dataset.id);
   const taskTitle = taskContent.querySelector('.task__title');
   taskTitle.classList.add('task__title-done');
   const completeButton = taskContent.querySelector('.task__complete');
