@@ -21,7 +21,6 @@ function createBlockTaskInfo(task) {
 
   const taskIcon = document.createElement('div');
   taskIcon.classList.add('task__icon');
-  taskIcon.innerText = 'icon'; // TODO: fix it
   taskCreation.appendChild(taskIcon);
 
   const taskTime = document.createElement('div');
@@ -80,6 +79,10 @@ function generateTask() {
 
 function createTask(event) {
   event.preventDefault();
+  if (constants.taskInput.value.length === 0 || constants.taskInput.value.length > 35) {
+    alert('The number of characters must be greater than 0 and less than 35.');
+    return;
+  }
   const todoDiv = document.createElement('div');
   const task = generateTask();
   localStorage.saveTasksToLocalStorage(task);

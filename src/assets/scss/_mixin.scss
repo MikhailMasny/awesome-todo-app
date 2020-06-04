@@ -4,6 +4,21 @@
     align-items: $align;
 }
 
+@mixin fontStyle($style, $weight, $size, $height) {
+    font-style: $style;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $height;
+}
+
+@mixin actionButton($width, $height, $border, $cursor, $radius) {
+    width: $width;
+    height: $height;
+    border: $border;
+    cursor: $cursor;
+    border-radius: $radius;
+}
+
 @mixin topIndent($length) {
     margin-top: $length;
 }

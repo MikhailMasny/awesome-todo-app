@@ -7,6 +7,7 @@
 body {
     background-color: $ligthGrayColor;
     @extend %flexCenter;
+    background: url('./assets/images/background.png') fixed no-repeat bottom right;
 }
 
 .wrapper {
@@ -15,5 +16,11 @@ body {
 }
 
 .indent {
-    @include topIndent(32px);
+    &__top {
+        margin-top: $marginBig;
+    }
+
+    &__left {
+        margin-left: $marginStandart;
+    }
 }

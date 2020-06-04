@@ -1,52 +1,46 @@
 .create {
     @extend %flexCenter;
-}
 
-.create__content {
-    width: 580px;
-    height: 50px;
-    background: $whiteColor;
-    border-radius: 91px;
-    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.08);
-}
+    &__content {
+        width: 580px;
+        height: 50px;
+        background: $whiteColor;
+        border-radius: 91px;
+        @extend %inputBoxShadow;
+    }
 
-.create__form {
-    padding: 9px 24px;
-    @include flexContent(flex, space-between, center);
-}
+    &__form {
+        padding: 9px 24px;
+        @include flexContent(flex, space-between, center);
+    }
 
-.create__input {
-    width: 400px;
-    font-family: $fontMontserrt;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.25px;
-    border: none;
-}
+    &__input {
+        width: 400px;
+        font-family: $fontMontserrat;
+        @include fontStyle(normal, normal, 14px, 24px);
+        letter-spacing: 0.25px;
+        border: none;
 
-.create__input:active {
-    border-color: $blueColor;
-}
+        &:active {
+            border-color: $blueColor;
+        }
+    }
 
-.create__split {
-    width: 2px;
-    height: 33px;
-    background-color: #D7D7DE;
-}
+    &__split {
+        width: 2px;
+        height: 33px;
+        background-color: $ligthGrayColor;
+    }
 
-.create__button {
-    font-family: $fontMontserrt;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-    border: none;
-    cursor: pointer;
-    background-color: $whiteColor;
-}
+    &__button {
+        font-family: $fontMontserrat;
+        @include fontStyle(normal, 600, 14px, 24px);
+        border: none;
+        cursor: pointer;
+        background-color: $whiteColor;
 
-.create__button:hover {
-    color: $blueColor;
+        &:hover {
+            color: $blueColor;
+        }
+    }
 }

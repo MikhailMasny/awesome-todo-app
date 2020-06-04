@@ -24,6 +24,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+              name: '[name].[contenthash].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -44,9 +56,6 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '/public/path/to/',
-            },
           },
           'css-loader',
           'sass-loader',

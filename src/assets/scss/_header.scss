@@ -1,9 +1,8 @@
-.header__title {
-    text-align: center;
-    font-family: $fontPoppins;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 44px;
-    color: $ligthBlackColor;
+.header {
+    &__title {
+        text-align: center;
+        font-family: $fontPoppins;
+        @include fontStyle(normal, 700, 40px, 44px);
+        color: $ligthBlackColor;
+    }
 }
