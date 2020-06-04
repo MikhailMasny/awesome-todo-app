@@ -1,4 +1,4 @@
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 720px) {
 
     .create {
         flex-wrap: wrap;
@@ -11,14 +11,18 @@
             width: 120px;
         }
     }
+}
 
+@media screen and (max-width: 599px) {
     .task {
         &__item {
             width: 300px;
         }
     }
+}
 
+@media screen and (max-width: 488px) {
     .filter {
         margin-top: $marginStandart;
     }
-  }
+}
