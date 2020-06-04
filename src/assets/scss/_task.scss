@@ -6,18 +6,19 @@
 
     &__item {
         width: 550px;
-        height: 94px;
-        background-color: $whiteColor;
+        // height: 94px; // TODO: fix it
+        background-color: $colorWhite;
         border-radius: 24px;
         box-shadow: 0px 8px 22px rgba(51, 51, 51, 0.15);
 
         &:hover {
             box-shadow: 0px 8px 22px rgba(51, 51, 51, 0.25);
         }
-    }
 
-    &__item-indent {
-        @include topIndent(20px);
+        &-indent {
+            margin-top: $marginSmall;
+            margin-bottom: $marginSmall;
+        }
     }
 
     &__content {
@@ -29,10 +30,14 @@
         font-family: $fontMontserrat;
         @include fontStyle(normal, 600, 15px, 20px);
         letter-spacing: 0.25px;
-    }
 
-    &__title-done {
-        text-decoration: line-through;
+        &-done {
+            text-decoration: line-through;
+        }
+
+        &-indent {
+            margin-bottom: $marginExtraSmall;
+        }
     }
 
     &__creation {
@@ -43,7 +48,7 @@
     &__time {
         font-family: $fontMontserrat;
         @include fontStyle(normal, 500, 11px, 13px);
-        color: $grayColor;
+        color: $colorGray;
     }
 
     &__time-indent {
@@ -65,7 +70,7 @@
     }
 
     &__complete {
-        background-color: $lightGreenColor;
+        background-color: $colorLightGreen;
 
         &-disable {
             display: none;
@@ -76,7 +81,7 @@
         }
 
         &:hover {
-            background-color: $greenColor;
+            background-color: $colorGreen;
 
             &::after {
                 content: url('./assets/images/complete.png');
@@ -85,14 +90,14 @@
     }
 
     &__remove {
-        background-color: $lightRedColor;
+        background-color: $colorLightRed;
 
         &::after {
             content: url('./assets/images/remove_red.png');
         }
 
         &:hover {
-            background-color: $redColor;
+            background-color: $colorRed;
 
             &::after {
                 content: url('./assets/images/remove.png');

@@ -1,0 +1,11 @@
+@media screen and (max-width: 768px) {
+    .create {
+        &__content {
+            width: 500px;
+        }
+
+        &__input {
+            width: 300px;
+        }
+    }
+  }

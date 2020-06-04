@@ -18,7 +18,3 @@
     cursor: $cursor;
     border-radius: $radius;
 }
-
-@mixin topIndent($length) {
-    margin-top: $length;
-}

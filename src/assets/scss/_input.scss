@@ -4,7 +4,7 @@
     &__content {
         width: 580px;
         height: 50px;
-        background: $whiteColor;
+        background: $colorWhite;
         border-radius: 91px;
         @extend %inputBoxShadow;
     }
@@ -22,14 +22,14 @@
         border: none;
 
         &:active {
-            border-color: $blueColor;
+            border-color: $colorBlue;
         }
     }
 
     &__split {
         width: 2px;
         height: 33px;
-        background-color: $ligthGrayColor;
+        background-color: $colorLigthGray;
     }
 
     &__button {
@@ -37,10 +37,10 @@
         @include fontStyle(normal, 600, 14px, 24px);
         border: none;
         cursor: pointer;
-        background-color: $whiteColor;
+        background-color: $colorWhite;
 
         &:hover {
-            color: $blueColor;
+            color: $colorBlue;
         }
     }
 }

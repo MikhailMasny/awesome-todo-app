@@ -1,0 +1,24 @@
+@media screen and (max-width: 375px) {
+
+    .create {
+        flex-wrap: wrap;
+
+        &__content {
+            width: 300px;
+        }
+
+        &__input {
+            width: 120px;
+        }
+    }
+
+    .task {
+        &__item {
+            width: 300px;
+        }
+    }
+
+    .filter {
+        margin-top: $marginStandart;
+    }
+  }

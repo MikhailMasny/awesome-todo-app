@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: $ligthGrayColor;
+    background-color: $colorLigthGray;
     @extend %flexCenter;
     background: url('./assets/images/background.png') fixed no-repeat bottom right;
 }

@@ -10,6 +10,7 @@ function createBlockTaskInfo(task) {
 
   const taskTitle = document.createElement('div');
   taskTitle.classList.add('task__title');
+  taskTitle.classList.add('task__title-indent');
   if (task.isCompleted) {
     taskTitle.classList.add('task__title-done');
   }
