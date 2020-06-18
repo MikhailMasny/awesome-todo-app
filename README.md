@@ -23,6 +23,7 @@ npm install --save-dev css-loader
 npm install webpack-dev-server --save-dev
 npm install sass-loader sass webpack --save-dev
 npm install file-loader --save-dev
+npm install copy-webpack-plugin --save-dev
 ```
 
 ## Built with
